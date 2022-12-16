@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.firstapp.entity.User;
-import ru.firstapp.repository.UserRepository;
 import ru.firstapp.service.UserService;
 
 @Controller
@@ -43,8 +42,8 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public String updateUser(@PathVariable Long id, @ModelAttribute("user") User user) {
-        userService.editUser(id, user);
+    public String updateUser(@ModelAttribute("user") User user) {
+        userService.editUser(user);
         return "redirect:/users";
     }
 

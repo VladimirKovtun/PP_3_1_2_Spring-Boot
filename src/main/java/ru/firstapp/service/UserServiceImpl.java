@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-@Transactional()
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -37,16 +37,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(Long id, User user) {
-        Optional<User> byId = userRepository.findById(id);
-        if (byId.isPresent()) {
-            User userById = byId.get();
-            userById.setAge(user.getAge());
-            userById.setName(user.getName());
-            userById.setLastName(user.getLastName());
-            userById.seteMail(user.geteMail());
-            userRepository.save(userById);
-        }
+    public void editUser(User user) {
+        userRepository.save(user);
     }
 
     @Override
